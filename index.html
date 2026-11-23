@@ -88,11 +88,14 @@
               Gratuit &amp; solidaire
             </span>
             <span class="text-xs sm:text-sm font-medium text-argile-600">
-              Val d'Anast · Maure-de-Bretagne · Guichen · Bain-de-Bretagne · Redon · Rennes
+              Autour de Val d'Anast · Entraide locale
             </span>
           </div>
-          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-argile-900">
-            Hent Mat
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-argile-900 flex flex-wrap items-baseline gap-2.5">
+            <span>Hent Mat</span>
+            <span class="text-sm sm:text-base font-medium text-argile-600">
+              — « Bonne route »
+            </span>
           </h1>
           <p class="mt-2 text-sm sm:text-base text-argile-700 max-w-2xl leading-relaxed">
             Un espace simple pour proposer une place libre dans votre voiture ou trouver un trajet de proximité entre habitants du secteur, en toute convivialité.
@@ -232,6 +235,7 @@
             role="tab"
             aria-selected="true"
             aria-controls="panelSearch"
+            onclick="window.hentMatSwitchTab && window.hentMatSwitchTab('search')"
             class="px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer"
           >
             Chercher un trajet
@@ -242,6 +246,7 @@
             role="tab"
             aria-selected="false"
             aria-controls="panelOffer"
+            onclick="window.hentMatSwitchTab && window.hentMatSwitchTab('offer')"
             class="px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer"
           >
             Proposer un trajet
@@ -740,6 +745,18 @@
           .replace(/'/g, '&#39;');
       }
 
+      // Normalise un texte (minuscules, sans accents, apostrophes et tirets unifiés) pour faciliter la recherche locale
+      function normalizeSearchText(value) {
+        return String(value ?? '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[’']/g, "'")
+          .replace(/[-_]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
       // Formatage lisible d'une date YYYY-MM-DD en français
       function formatDateFr(dateStr) {
         if (!dateStr) return '';
@@ -890,33 +907,41 @@
         activeTab = tabName;
         const isSearch = tabName === 'search';
 
-        panelSearch.classList.toggle('hidden', !isSearch);
-        panelOffer.classList.toggle('hidden', isSearch);
+        if (panelSearch) panelSearch.classList.toggle('hidden', !isSearch);
+        if (panelOffer) panelOffer.classList.toggle('hidden', isSearch);
 
-        tabSearch.setAttribute('aria-selected', String(isSearch));
-        tabOffer.setAttribute('aria-selected', String(!isSearch));
+        if (tabSearch) {
+          tabSearch.setAttribute('aria-selected', String(isSearch));
+          tabSearch.className = isSearch
+            ? 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer'
+            : 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
+        }
+
+        if (tabOffer) {
+          tabOffer.setAttribute('aria-selected', String(!isSearch));
+          tabOffer.className = !isSearch
+            ? 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer'
+            : 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
+        }
 
         if (isSearch) {
-          tabSearch.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer';
-          tabOffer.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
-          renderRides();
-        } else {
-          tabOffer.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer';
-          tabSearch.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
+          try {
+            renderRides();
+          } catch (err) {
+            showNotification("L'affichage des trajets a rencontré un souci local.", 'warning');
+          }
+        } else if (formError) {
           formError.classList.add('hidden');
         }
       }
 
-      // Filtrage des trajets selon la période (trajets passés masqués par défaut) et la recherche texte
+      window.hentMatSwitchTab = setActiveTab;
+
+      // Retourne la liste des trajets filtrés selon la recherche et la période choisie
       function getFilteredRides() {
         const uniqueRides = deduplicateRidesById(rides);
-        if (uniqueRides.length !== rides.length) {
-          rides = uniqueRides;
-          saveRides();
-        }
-
-        const query = filterQuery.value.trim().toLowerCase();
-        const period = filterPeriod.value || 'upcoming';
+        const query = normalizeSearchText(filterQuery ? filterQuery.value : '');
+        const period = filterPeriod ? filterPeriod.value : 'upcoming';
         const now = new Date();
         const todayStr = getRelativeDate(0);
         const weekAheadStr = getRelativeDate(7);
@@ -938,14 +963,12 @@
           }
 
           if (!query) return true;
-          const haystack = [
+          const haystack = normalizeSearchText([
             ride.origin,
             ride.destination,
             ride.driverName,
             ride.notes
-          ]
-            .join(' ')
-            .toLowerCase();
+          ].join(' '));
 
           return haystack.includes(query);
         });
@@ -1501,8 +1524,22 @@
 
       // Réinitialiser les filtres vers l'affichage par défaut (trajets passés masqués)
       function handleResetFilters() {
-        filterQuery.value = '';
-        filterPeriod.value = 'upcoming';
+        const queryInput = document.getElementById('filterQuery') || filterQuery;
+        const periodSelect = document.getElementById('filterPeriod') || filterPeriod;
+
+        if (queryInput) {
+          queryInput.value = '';
+        }
+        if (periodSelect) {
+          periodSelect.value = 'upcoming';
+        }
+
+        document.querySelectorAll('.quick-commune-btn').forEach((btn) => {
+          btn.classList.remove('ring-2', 'ring-mousse-600/40', 'bg-mousse-100', 'text-mousse-800', 'border-mousse-200');
+          btn.classList.add('bg-argile-100', 'text-argile-800', 'border-argile-200');
+        });
+
+        setActiveTab('search');
         renderRides();
       }
 
@@ -1564,36 +1601,85 @@
 
       // Initialisation des écouteurs d'événements
       function bindEvents() {
-        tabSearch.addEventListener('click', () => setActiveTab('search'));
-        tabOffer.addEventListener('click', () => setActiveTab('offer'));
+        document.addEventListener('click', (event) => {
+          const targetBtn = event.target.closest('button');
+          if (!targetBtn) return;
 
-        emptyResetBtn.addEventListener('click', handleResetFilters);
-        emptyOfferBtn.addEventListener('click', () => setActiveTab('offer'));
-
-        filterQuery.addEventListener('input', renderRides);
-        filterPeriod.addEventListener('change', renderRides);
-        resetFiltersBtn.addEventListener('click', handleResetFilters);
-
-        document.querySelectorAll('.quick-commune-btn').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const commune = btn.getAttribute('data-quick-commune') || '';
-            filterQuery.value = commune;
+          if (targetBtn.id === 'tabSearch') {
+            event.preventDefault();
+            setActiveTab('search');
+            return;
+          }
+          if (targetBtn.id === 'tabOffer') {
+            event.preventDefault();
+            setActiveTab('offer');
+            return;
+          }
+          if (targetBtn.id === 'emptyResetBtn' || targetBtn.id === 'resetFiltersBtn') {
+            event.preventDefault();
+            handleResetFilters();
+            return;
+          }
+          if (targetBtn.id === 'emptyOfferBtn') {
+            setActiveTab('offer');
+            return;
+          }
+          if (targetBtn.id === 'restoreSamplesBtn') {
+            handleRestoreSamples();
+            return;
+          }
+          if (targetBtn.id === 'clearSamplesBtn') {
+            handleClearSamples();
+            return;
+          }
+          if (targetBtn.id === 'closeBannerBtn') {
+            hideNotification();
+            return;
+          }
+          if (targetBtn.classList.contains('quick-commune-btn')) {
+            const commune = targetBtn.getAttribute('data-quick-commune') || '';
+            const queryInput = document.getElementById('filterQuery') || filterQuery;
+            if (queryInput) {
+              queryInput.value = commune;
+            }
+            document.querySelectorAll('.quick-commune-btn').forEach((btn) => {
+              const isSelected = btn === targetBtn;
+              btn.classList.toggle('ring-2', isSelected);
+              btn.classList.toggle('ring-mousse-600/40', isSelected);
+              btn.classList.toggle('bg-mousse-100', isSelected);
+              btn.classList.toggle('text-mousse-800', isSelected);
+              btn.classList.toggle('border-mousse-200', isSelected);
+              btn.classList.toggle('bg-argile-100', !isSelected);
+              btn.classList.toggle('text-argile-800', !isSelected);
+              btn.classList.toggle('border-argile-200', !isSelected);
+            });
+            setActiveTab('search');
             renderRides();
-          });
+          }
         });
 
-        restoreSamplesBtn.addEventListener('click', handleRestoreSamples);
-        clearSamplesBtn.addEventListener('click', handleClearSamples);
-
-        offerRideForm.addEventListener('submit', handleOfferSubmit);
-        closeBannerBtn.addEventListener('click', hideNotification);
+        if (filterQuery) {
+          filterQuery.addEventListener('input', renderRides);
+          filterQuery.addEventListener('change', renderRides);
+        }
+        if (filterPeriod) {
+          filterPeriod.addEventListener('change', renderRides);
+        }
+        if (offerRideForm) {
+          offerRideForm.addEventListener('submit', handleOfferSubmit);
+        }
       }
 
       // Démarrage
-      loadRides();
-      setDefaultDateInForm();
-      bindEvents();
-      renderRides();
+      try {
+        loadRides();
+        setDefaultDateInForm();
+        bindEvents();
+        renderRides();
+      } catch (err) {
+        setActiveTab('search');
+        showNotification("Certaines données locales n'ont pas pu être chargées ; l'onglet de recherche reste actif.", 'warning');
+      }
     })();
   </script>
 </body>
