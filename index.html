@@ -1,12 +1,1600 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=./chemin_faisant_covoiturage_local_gratuit%20(4).html">
-  <title>Chemin faisant — Covoiturage local</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hent Mat — Covoiturage local gratuit autour de Val d'Anast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            mousse: {
+              50: '#f3f7f4',
+              100: '#e2ede4',
+              200: '#c5dac9',
+              600: '#3d6b47',
+              700: '#315739',
+              800: '#27462e',
+            },
+            argile: {
+              50: '#fbf8f4',
+              100: '#f5efe6',
+              200: '#e8ddd0',
+              300: '#d6c6b3',
+              600: '#6b5e53',
+              700: '#53483f',
+              800: '#3d352f',
+              900: '#26221e',
+            },
+            tilleul: {
+              50: '#fbf9f1',
+              100: '#f4eed8',
+              200: '#e7dab0',
+              800: '#6c5722',
+              900: '#544318',
+            },
+            terracotta: {
+              600: '#b8542a',
+              700: '#9c431e',
+              800: '#7c3416',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Dégradé harmonieux et doux : abricot clair, miel doré, sauge fraîche et brume céleste */
+    body {
+      background-color: #fdf8f0;
+      background-image:
+        radial-gradient(at 8% 12%, rgba(251, 191, 114, 0.32) 0px, transparent 52%),
+        radial-gradient(at 92% 10%, rgba(167, 215, 197, 0.32) 0px, transparent 50%),
+        radial-gradient(at 84% 88%, rgba(186, 206, 248, 0.30) 0px, transparent 54%),
+        radial-gradient(at 14% 86%, rgba(247, 214, 134, 0.30) 0px, transparent 52%),
+        linear-gradient(155deg, #fffaf2 0%, #f5f9f4 50%, #f4f7fc 100%);
+      background-attachment: fixed;
+    }
+  </style>
 </head>
-<body>
-  <p>Redirection vers <a href="./chemin_faisant_covoiturage_local_gratuit%20(4).html">Chemin faisant</a>…</p>
+<body class="min-h-screen text-argile-900 antialiased selection:bg-mousse-200 selection:text-argile-900">
+  <!-- Bandeau supérieur d'entraide et de gratuité -->
+  <div class="bg-tilleul-50/95 border-b border-tilleul-200 text-tilleul-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2.5 text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+      <p class="font-medium">
+        Partage de trajets 100 % gratuit et solidaire entre voisins autour de Val d'Anast — basé sur l'entraide locale et le partage de frais, sans commission.
+      </p>
+      <span id="rideCountBadge" class="inline-flex items-center self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-tilleul-100 text-tilleul-900 font-semibold border border-tilleul-200">
+        0 trajet à venir
+      </span>
+    </div>
+  </div>
+
+  <!-- En-tête chaleureux de l'application -->
+  <header class="bg-[#fffdf9] border-b border-argile-200 shadow-xs">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-7 sm:py-8">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2.5 mb-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-mousse-100 text-mousse-800 border border-mousse-200">
+              Gratuit &amp; solidaire
+            </span>
+            <span class="text-xs sm:text-sm font-medium text-argile-600">
+              Val d'Anast · Maure-de-Bretagne · Guichen · Bain-de-Bretagne · Redon · Rennes
+            </span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-argile-900">
+            Hent Mat
+          </h1>
+          <p class="mt-2 text-sm sm:text-base text-argile-700 max-w-2xl leading-relaxed">
+            Un espace simple pour proposer une place libre dans votre voiture ou trouver un trajet de proximité entre habitants du secteur, en toute convivialité.
+          </p>
+          <p class="mt-2 text-xs sm:text-sm font-medium text-mousse-800 bg-mousse-50/90 border border-mousse-200/80 rounded-2xl px-3.5 py-2 inline-block">
+            Cette plateforme de covoiturage local est proposée par l'association Brass'arts.
+          </p>
+        </div>
+
+        <!-- Illustration chaleureuse : petite voiture et passagers heureux -->
+        <div class="w-full max-w-[270px] sm:max-w-[290px] self-center lg:self-auto shrink-0 rounded-3xl bg-gradient-to-br from-tilleul-50 via-mousse-50 to-argile-50 border border-argile-200/90 p-2.5 shadow-2xs">
+          <svg
+            viewBox="0 0 320 148"
+            class="w-full h-auto block"
+            role="img"
+            aria-label="Illustration d'une voiture chaleureuse avec des passagers souriants sur la route"
+          >
+            <!-- Nuage doux et petit soleil -->
+            <circle cx="268" cy="28" r="14" fill="#f7d686" opacity="0.85" />
+            <path d="M46 34c0-7 5-12 12-12 5 0 9 3 11 7 2-1 4-2 6-2 6 0 11 5 11 11H46z" fill="#e2ede4" />
+
+            <!-- Collines douces à l'arrière-plan -->
+            <path d="M0 104 Q72 78 152 100 T320 92 L320 118 L0 118 Z" fill="#e2ede4" opacity="0.75" />
+
+            <!-- Route locale -->
+            <rect x="0" y="110" width="320" height="38" fill="#53483f" />
+            <rect x="0" y="107" width="320" height="4" fill="#6b8f71" />
+            <line x1="16" y1="129" x2="54" y2="129" stroke="#fbf9f1" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 16" />
+            <line x1="84" y1="129" x2="122" y2="129" stroke="#fbf9f1" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 16" />
+            <line x1="152" y1="129" x2="190" y2="129" stroke="#fbf9f1" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 16" />
+            <line x1="220" y1="129" x2="258" y2="129" stroke="#fbf9f1" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 16" />
+            <line x1="286" y1="129" x2="306" y2="129" stroke="#fbf9f1" stroke-width="3" stroke-linecap="round" />
+
+            <!-- Carrosserie arrière et toit de la voiture chaleureuse -->
+            <path
+              d="M78 86 L92 52 Q96 46 104 46 L186 46 Q195 46 202 54 L224 80 L248 84 Q256 86 256 95 L256 108 Q256 113 250 113 L76 113 Q70 113 70 108 L70 96 Q70 88 78 86 Z"
+              fill="#b8542a"
+              stroke="#7c3416"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+            />
+
+            <!-- Vitres de la voiture bien lumineuses -->
+            <path
+              d="M96 54 L121 54 L121 78 L86 78 Z"
+              fill="#f3f9fd"
+              stroke="#7c3416"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M128 54 L154 54 L154 78 L128 78 Z"
+              fill="#f3f9fd"
+              stroke="#7c3416"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M161 54 L184 54 Q190 54 194 59 L210 78 L161 78 Z"
+              fill="#f3f9fd"
+              stroke="#7c3416"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+
+            <!-- Passagers heureux bien visibles dans l'habitacle -->
+            <!-- Passager 1 (arrière gauche) -->
+            <g transform="translate(107, 63)">
+              <path d="M-10 18c0-6 4.5-10 10-10s10 4 10 10" fill="#3d6b47" />
+              <circle cx="0" cy="1" r="8.5" fill="#f4c7a1" />
+              <path d="M-8 -1c1-5 5-7.5 8-7.5 4 0 7 2.5 8 7.5-3-2-6-2.5-8-2.5s-5 0.5-8 2.5z" fill="#53483f" />
+              <circle cx="-3" cy="1" r="1.4" fill="#26221e" />
+              <circle cx="3" cy="1" r="1.4" fill="#26221e" />
+              <circle cx="-4.8" cy="3.2" r="1.6" fill="#e58c6a" opacity="0.55" />
+              <circle cx="4.8" cy="3.2" r="1.6" fill="#e58c6a" opacity="0.55" />
+              <path d="M-4 4.2c1.8 2.8 6.2 2.8 8 0" stroke="#26221e" stroke-width="1.6" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- Passager 2 (milieu) -->
+            <g transform="translate(141, 62)">
+              <path d="M-11 19c0-6.5 5-10.5 11-10.5s11 4 11 10.5" fill="#d98a3c" />
+              <circle cx="0" cy="0" r="9" fill="#f7d3b5" />
+              <path d="M-9 -2c1-5.5 5-8 9-8s8 2.5 9 8c-4-2.2-14-2.2-18 0z" fill="#7c3416" />
+              <circle cx="-3.2" cy="0" r="1.4" fill="#26221e" />
+              <circle cx="3.2" cy="0" r="1.4" fill="#26221e" />
+              <circle cx="-5" cy="2.4" r="1.7" fill="#e58c6a" opacity="0.55" />
+              <circle cx="5" cy="2.4" r="1.7" fill="#e58c6a" opacity="0.55" />
+              <path d="M-4.2 3.4c1.8 2.8 6.6 2.8 8.4 0" stroke="#26221e" stroke-width="1.6" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- Passager 3 (avant souriant) -->
+            <g transform="translate(176, 63)">
+              <path d="M-10 18c0-6 4.5-10 10-10s10 4 10 10" fill="#4f7cac" />
+              <circle cx="0" cy="1" r="8.5" fill="#e8b892" />
+              <path d="M-8.5 -1c0.5-5 4.5-7.5 8.5-7.5s8 2.5 8.5 7.5c-3-1.8-6-2.2-8.5-2.2s-5.5 0.4-8.5 2.2z" fill="#3d352f" />
+              <circle cx="-3" cy="1" r="1.4" fill="#26221e" />
+              <circle cx="3" cy="1" r="1.4" fill="#26221e" />
+              <circle cx="-4.8" cy="3.2" r="1.6" fill="#e58c6a" opacity="0.55" />
+              <circle cx="4.8" cy="3.2" r="1.6" fill="#e58c6a" opacity="0.55" />
+              <path d="M-4 4.2c1.8 2.8 6.2 2.8 8 0" stroke="#26221e" stroke-width="1.6" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- Rebords de portières et bas de caisse au premier plan -->
+            <path d="M84 78 L212 78" stroke="#7c3416" stroke-width="2.5" stroke-linecap="round" />
+            <rect x="70" y="84" width="186" height="29" rx="10" fill="#b8542a" stroke="#7c3416" stroke-width="2.2" />
+
+            <!-- Phare avant et petite touche latérale -->
+            <rect x="242" y="91" width="11" height="7" rx="3" fill="#f7d686" stroke="#7c3416" stroke-width="1.5" />
+            <line x1="126" y1="92" x2="196" y2="92" stroke="#e8ddd0" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+
+            <!-- Roues -->
+            <g transform="translate(106, 113)">
+              <circle cx="0" cy="0" r="15" fill="#26221e" />
+              <circle cx="0" cy="0" r="8" fill="#f5efe6" />
+              <circle cx="0" cy="0" r="3.5" fill="#6b5e53" />
+            </g>
+            <g transform="translate(218, 113)">
+              <circle cx="0" cy="0" r="15" fill="#26221e" />
+              <circle cx="0" cy="0" r="8" fill="#f5efe6" />
+              <circle cx="0" cy="0" r="3.5" fill="#6b5e53" />
+            </g>
+
+            <!-- Petit cœur de convivialité -->
+            <path
+              d="M283 56 c-3-4-9-4-12 0 -3 4 0 9 12 16 12-7 15-12 12-16 -3-4-9-4-12 0z"
+              fill="#d96b43"
+              opacity="0.88"
+            />
+          </svg>
+        </div>
+
+        <!-- Navigation par onglets -->
+        <nav class="flex rounded-2xl bg-argile-100 p-1.5 border border-argile-200 self-start md:self-auto shrink-0" role="tablist" aria-label="Navigation principale">
+          <button
+            id="tabSearch"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panelSearch"
+            class="px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer"
+          >
+            Chercher un trajet
+          </button>
+          <button
+            id="tabOffer"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panelOffer"
+            class="px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer"
+          >
+            Proposer un trajet
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Zone de notification douce (sans alert() ni confirm()) -->
+  <div id="statusBanner" class="hidden max-w-5xl mx-auto px-4 sm:px-6 pt-5">
+    <div id="statusBannerBox" class="rounded-2xl border px-4 py-3 text-sm font-medium flex items-center justify-between gap-3 bg-mousse-50 border-mousse-200 text-mousse-800">
+      <p id="statusBannerText"></p>
+      <button
+        id="closeBannerBtn"
+        type="button"
+        aria-label="Fermer la notification"
+        class="text-xs font-semibold px-2.5 py-1 rounded-lg hover:bg-white/70 transition cursor-pointer"
+      >
+        Fermer
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-7 sm:py-9">
+    <!-- ONGLET 1 : CHERCHER UN TRAJET -->
+    <section id="panelSearch" role="tabpanel" aria-labelledby="tabSearch">
+      <!-- Barre de recherche et filtres -->
+      <div class="bg-[#fffdf9] rounded-3xl border border-argile-200 p-5 sm:p-6 shadow-xs mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+          <div class="md:col-span-6">
+            <label for="filterQuery" class="block text-sm font-semibold text-argile-800 mb-1.5">
+              Commune de départ, arrivée ou mot-clé
+            </label>
+            <input
+              id="filterQuery"
+              type="text"
+              placeholder="Ex. : Val d'Anast, Maure-de-Bretagne, Guichen, Bain-de-Bretagne, Redon, Rennes..."
+              class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 placeholder:text-argile-600/70 focus:outline-none focus:ring-2 focus:ring-terracotta-600/35 focus:border-terracotta-700 transition"
+            />
+          </div>
+
+          <div class="md:col-span-3">
+            <label for="filterPeriod" class="block text-sm font-semibold text-argile-800 mb-1.5">
+              Période (trajets passés masqués)
+            </label>
+            <select
+              id="filterPeriod"
+              class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-terracotta-600/35 focus:border-terracotta-700 transition"
+            >
+              <option value="upcoming" selected>À venir / Aujourd'hui</option>
+              <option value="today">Aujourd'hui</option>
+              <option value="week">Cette semaine (7 jours)</option>
+              <option value="past">Trajets passés</option>
+              <option value="all">Tous (y compris passés)</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-3 flex gap-2">
+            <button
+              id="resetFiltersBtn"
+              type="button"
+              class="w-full rounded-2xl border border-argile-300 bg-argile-100 hover:bg-argile-200/80 text-argile-800 font-semibold text-sm px-4 py-3 transition cursor-pointer"
+            >
+              Réinitialiser les filtres
+            </button>
+          </div>
+        </div>
+
+        <!-- Raccourcis rapides de communes locales -->
+        <div class="mt-4 pt-4 border-t border-argile-100 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-semibold text-argile-600 mr-1">Accès rapide :</span>
+          <button type="button" data-quick-commune="Val d'Anast" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Val d'Anast
+          </button>
+          <button type="button" data-quick-commune="Maure-de-Bretagne" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Maure-de-Bretagne
+          </button>
+          <button type="button" data-quick-commune="Guichen" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Guichen
+          </button>
+          <button type="button" data-quick-commune="Bain-de-Bretagne" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Bain-de-Bretagne
+          </button>
+          <button type="button" data-quick-commune="Redon" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Redon
+          </button>
+          <button type="button" data-quick-commune="Rennes" class="quick-commune-btn px-3 py-1 rounded-full text-xs font-medium bg-argile-100 hover:bg-mousse-100 text-argile-800 hover:text-mousse-800 border border-argile-200 transition cursor-pointer">
+            Rennes
+          </button>
+        </div>
+      </div>
+
+      <!-- En-tête de la liste et actions sur les trajets / exemples locaux -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <div>
+          <h2 id="listHeading" class="text-lg sm:text-xl font-bold text-argile-900">Trajets à venir</h2>
+          <p id="resultsSummary" class="text-xs sm:text-sm text-argile-600"></p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            id="restoreSamplesBtn"
+            type="button"
+            class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#fffdf9] hover:bg-mousse-50 text-mousse-800 border border-mousse-200 transition cursor-pointer"
+          >
+            Réinitialiser les exemples
+          </button>
+          <button
+            id="clearSamplesBtn"
+            type="button"
+            class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#fffdf9] hover:bg-tilleul-50 text-argile-800 border border-argile-300 transition cursor-pointer"
+          >
+            Effacer les exemples
+          </button>
+        </div>
+      </div>
+
+      <!-- Grille des cartes de trajets -->
+      <div id="ridesList" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+
+      <!-- État vide lorsqu'aucun trajet ne correspond -->
+      <div id="emptyState" class="hidden bg-[#fffdf9] rounded-3xl border border-dashed border-argile-300 p-8 sm:p-10 text-center shadow-xs">
+        <p class="text-base font-semibold text-argile-800">Aucun trajet ne correspond à vos critères.</p>
+        <p class="mt-1.5 text-sm text-argile-600 max-w-md mx-auto">
+          Les trajets déjà passés sont masqués par défaut. Vous pouvez consulter les trajets passés, réinitialiser les exemples ou publier un nouveau trajet.
+        </p>
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+          <button
+            id="emptyResetBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-2xl text-sm font-semibold bg-argile-100 hover:bg-argile-200 text-argile-900 transition cursor-pointer"
+          >
+            Réinitialiser les filtres
+          </button>
+          <button
+            id="emptyOfferBtn"
+            type="button"
+            class="px-4 py-2.5 rounded-2xl text-sm font-semibold bg-terracotta-700 hover:bg-terracotta-800 text-white transition cursor-pointer"
+          >
+            Proposer un trajet
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONGLET 2 : PROPOSER UN TRAJET -->
+    <section id="panelOffer" role="tabpanel" aria-labelledby="tabOffer" class="hidden">
+      <div class="bg-[#fffdf9] rounded-3xl border border-argile-200 p-5 sm:p-8 shadow-xs max-w-3xl mx-auto">
+        <div class="mb-6">
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-mousse-100 text-mousse-800 border border-mousse-200 mb-2">
+            Entre voisins · Gratuit
+          </span>
+          <h2 class="text-2xl font-bold text-argile-900">Proposer un trajet</h2>
+          <p class="mt-1 text-sm text-argile-600">
+            Indiquez votre itinéraire, l'horaire et le nombre de places libres. Votre trajet est enregistré localement dans votre navigateur.
+          </p>
+        </div>
+
+        <form id="offerRideForm" class="space-y-5" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="driverName" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Prénom ou nom d'usage <span class="text-mousse-700">*</span>
+              </label>
+              <input
+                id="driverName"
+                name="driverName"
+                type="text"
+                required
+                placeholder="Ex. : Solène"
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              />
+            </div>
+
+            <div>
+              <label for="seatsCount" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Places disponibles <span class="text-mousse-700">*</span>
+              </label>
+              <select
+                id="seatsCount"
+                name="seatsCount"
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              >
+                <option value="1">1 place libre</option>
+                <option value="2" selected>2 places libres</option>
+                <option value="3">3 places libres</option>
+                <option value="4">4 places libres</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="originPlace" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Lieu / commune de départ <span class="text-mousse-700">*</span>
+              </label>
+              <input
+                id="originPlace"
+                name="originPlace"
+                type="text"
+                required
+                placeholder="Ex. : Val d'Anast (bourg)"
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              />
+            </div>
+
+            <div>
+              <label for="destinationPlace" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Lieu / commune d'arrivée <span class="text-mousse-700">*</span>
+              </label>
+              <input
+                id="destinationPlace"
+                name="destinationPlace"
+                type="text"
+                required
+                placeholder="Ex. : Guichen ou Redon"
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="rideDate" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Date <span class="text-mousse-700">*</span>
+              </label>
+              <input
+                id="rideDate"
+                name="rideDate"
+                type="date"
+                required
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              />
+            </div>
+
+            <div>
+              <label for="rideTime" class="block text-sm font-semibold text-argile-800 mb-1.5">
+                Heure de départ <span class="text-mousse-700">*</span>
+              </label>
+              <input
+                id="rideTime"
+                name="rideTime"
+                type="time"
+                required
+                class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="driverContact" class="block text-sm font-semibold text-argile-800 mb-1.5">
+              Contact à afficher après demande de place (optionnel)
+            </label>
+            <input
+              id="driverContact"
+              name="driverContact"
+              type="text"
+              placeholder="Ex. : 06 12 34 56 78 ou SMS / message sur le groupe local"
+              class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+            />
+          </div>
+
+          <div>
+            <label for="rideNotes" class="block text-sm font-semibold text-argile-800 mb-1.5">
+              Point de rendez-vous ou précision utile (optionnel)
+            </label>
+            <textarea
+              id="rideNotes"
+              name="rideNotes"
+              rows="3"
+              placeholder="Ex. : Devant la mairie ou la boulangerie, petit sac accepté, retour possible vers 17h30."
+              class="w-full rounded-2xl border border-argile-300 bg-white px-4 py-3 text-sm text-argile-900 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+            ></textarea>
+          </div>
+
+          <p id="formError" class="hidden text-sm font-medium text-amber-900 bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3"></p>
+
+          <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-xs text-argile-600">
+              Trajet gratuit entre particuliers — aucun paiement en ligne.
+            </p>
+            <button
+              type="submit"
+              class="px-6 py-3 rounded-2xl bg-terracotta-700 hover:bg-terracotta-800 text-white font-semibold text-sm shadow-xs transition cursor-pointer"
+            >
+              Publier le trajet
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pied de page doux -->
+  <footer class="border-t border-argile-200 bg-[#fffdf9] mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 text-xs sm:text-sm text-argile-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <p class="font-medium text-argile-800">
+        Hent Mat — Covoiturage local gratuit autour de Val d'Anast
+      </p>
+      <p>
+        Entraide de proximité · Trajets passés masqués par défaut, conservés dans votre navigateur
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * Application "Hent Mat"
+     * Gestion locale des trajets de covoiturage gratuit autour de Val d'Anast
+     * avec persistance dans localStorage ('chemin_faisant_rides_v1' et 'chemin_faisant_my_requests_v1'),
+     * masquage par défaut des trajets passés (sans suppression des données enregistrées),
+     * demandes multiples (1 place à la fois jusqu'à épuisement des places libres),
+     * champ facultatif prénom/message par demande, annulation individuelle et gestion complète.
+     */
+    (function () {
+      const STORAGE_KEY = 'chemin_faisant_rides_v1';
+      const MY_REQUESTS_KEY = 'chemin_faisant_my_requests_v1';
+
+      // Retourne une date au format YYYY-MM-DD décalée de `offsetDays` jours
+      function getRelativeDate(offsetDays) {
+        const date = new Date();
+        date.setDate(date.getDate() + offsetDays);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      // Retourne une heure future sûre pour la journée en cours afin qu'un trajet d'aujourd'hui reste à venir
+      function getSafeTodayTime() {
+        const now = new Date();
+        const candidate = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+        if (candidate.getDate() !== now.getDate()) {
+          return '23:30';
+        }
+        const hh = String(candidate.getHours()).padStart(2, '0');
+        const mm = String(candidate.getMinutes()).padStart(2, '0');
+        return `${hh}:${mm}`;
+      }
+
+      // Convertit une date (YYYY-MM-DD) et une heure (HH:MM) en objet Date local
+      function parseRideDateTime(dateStr, timeStr) {
+        if (!dateStr) return null;
+        const dateParts = dateStr.split('-').map(Number);
+        if (dateParts.length !== 3 || dateParts.some(Number.isNaN)) return null;
+
+        let hours = 23;
+        let minutes = 59;
+        if (timeStr && timeStr.includes(':')) {
+          const timeParts = timeStr.split(':').map(Number);
+          if (!Number.isNaN(timeParts[0])) hours = timeParts[0];
+          if (!Number.isNaN(timeParts[1])) minutes = timeParts[1];
+        }
+
+        const dt = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], hours, minutes, 0, 0);
+        return Number.isNaN(dt.getTime()) ? null : dt;
+      }
+
+      // Indique si un trajet est déjà passé selon l'instant courant
+      function isRidePast(ride, now = new Date()) {
+        const rideDateTime = parseRideDateTime(ride.date, ride.time);
+        if (!rideDateTime) return false;
+        return rideDateTime.getTime() < now.getTime();
+      }
+
+      // Trajets d'exemple locaux autour de Val d'Anast et communes voisines avec dates dynamiques
+      function createSampleRides() {
+        return [
+          {
+            id: 'sample-1',
+            isSample: true,
+            driverName: 'Camille',
+            origin: "Val d'Anast",
+            destination: 'Maure-de-Bretagne',
+            date: getRelativeDate(0),
+            time: getSafeTodayTime(),
+            seats: 2,
+            contact: '06 41 28 90 14 (appel ou SMS)',
+            notes: 'Départ devant la place de l’église à Val d’Anast, arrêt possible au croisement de Campel.',
+            requests: [],
+            contactRevealed: false
+          },
+          {
+            id: 'sample-2',
+            isSample: true,
+            driverName: 'Yannick',
+            origin: 'Guichen',
+            destination: "Val d'Anast",
+            date: getRelativeDate(1),
+            time: '17:40',
+            seats: 3,
+            contact: 'Disponible par message sur le groupe de voisins',
+            notes: 'Passage par Lohéac si besoin, coffre libre pour courses ou cabas.',
+            requests: [],
+            contactRevealed: false
+          },
+          {
+            id: 'sample-3',
+            isSample: true,
+            driverName: 'Mireille',
+            origin: "Val d'Anast",
+            destination: 'Bain-de-Bretagne',
+            date: getRelativeDate(2),
+            time: '09:00',
+            seats: 2,
+            contact: '06 82 55 19 03',
+            notes: 'Rendez-vous près de la boulangerie du bourg, passage envisagé vers Redon.',
+            requests: [],
+            contactRevealed: false
+          },
+          {
+            id: 'sample-4',
+            isSample: true,
+            driverName: 'Bastien',
+            origin: 'Redon',
+            destination: 'Rennes',
+            date: getRelativeDate(4),
+            time: '07:45',
+            seats: 2,
+            contact: '07 60 14 88 21 (SMS de préférence)',
+            notes: 'Dépose possible vers Guichen / Pont-Réan ou métro sud à Rennes.',
+            requests: [],
+            contactRevealed: false
+          },
+          {
+            id: 'sample-past-1',
+            isSample: true,
+            driverName: 'Hélène',
+            origin: "Val d'Anast",
+            destination: 'Pipriac',
+            date: getRelativeDate(-2),
+            time: '08:30',
+            seats: 2,
+            contact: '06 55 10 22 49',
+            notes: 'Trajet d’exemple déjà effectué (masqué par défaut, visible via le filtre "Trajets passés").',
+            requests: [
+              {
+                id: 'req-sample-past-1',
+                passengerNote: 'Lucie — merci pour l’aller-retour jusqu’au marché !',
+                seatsTaken: 1,
+                createdAt: new Date(Date.now() - 2 * 86400000).toISOString()
+              }
+            ],
+            contactRevealed: false
+          }
+        ];
+      }
+
+      // État de l'application
+      let rides = [];
+      // Mappe rideId -> tableau de demandes créées sur cet appareil : [{ requestId, passengerNote }]
+      let myRequestsByRide = {};
+      // Ensemble des rideId dont la liste détaillée des demandes est dépliée
+      const expandedRequestPanels = new Set();
+      // rideId dont le mini-formulaire de demande (prénom / message facultatif) est ouvert
+      let openRequestComposerId = null;
+      let activeTab = 'search';
+
+      // Références DOM
+      const tabSearch = document.getElementById('tabSearch');
+      const tabOffer = document.getElementById('tabOffer');
+      const panelSearch = document.getElementById('panelSearch');
+      const panelOffer = document.getElementById('panelOffer');
+
+      const filterQuery = document.getElementById('filterQuery');
+      const filterPeriod = document.getElementById('filterPeriod');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      const emptyResetBtn = document.getElementById('emptyResetBtn');
+      const emptyOfferBtn = document.getElementById('emptyOfferBtn');
+
+      const listHeading = document.getElementById('listHeading');
+      const ridesList = document.getElementById('ridesList');
+      const emptyState = document.getElementById('emptyState');
+      const resultsSummary = document.getElementById('resultsSummary');
+      const rideCountBadge = document.getElementById('rideCountBadge');
+
+      const restoreSamplesBtn = document.getElementById('restoreSamplesBtn');
+      const clearSamplesBtn = document.getElementById('clearSamplesBtn');
+
+      const offerRideForm = document.getElementById('offerRideForm');
+      const formError = document.getElementById('formError');
+
+      const statusBanner = document.getElementById('statusBanner');
+      const statusBannerBox = document.getElementById('statusBannerBox');
+      const statusBannerText = document.getElementById('statusBannerText');
+      const closeBannerBtn = document.getElementById('closeBannerBtn');
+
+      // Échappement HTML pour éviter toute injection dans le rendu dynamique
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      // Formatage lisible d'une date YYYY-MM-DD en français
+      function formatDateFr(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        const date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+        if (Number.isNaN(date.getTime())) return dateStr;
+        return new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }).format(date);
+      }
+
+      // Affichage d'un message de retour convivial
+      function showNotification(message, tone = 'success') {
+        statusBannerText.textContent = message;
+        statusBanner.classList.remove('hidden');
+
+        if (tone === 'warning') {
+          statusBannerBox.className = 'rounded-2xl border px-4 py-3 text-sm font-medium flex items-center justify-between gap-3 bg-tilleul-50 border-tilleul-200 text-tilleul-900';
+        } else {
+          statusBannerBox.className = 'rounded-2xl border px-4 py-3 text-sm font-medium flex items-center justify-between gap-3 bg-mousse-50 border-mousse-200 text-mousse-800';
+        }
+      }
+
+      function hideNotification() {
+        statusBanner.classList.add('hidden');
+      }
+
+      // Normalise la structure des demandes locales de l'utilisateur (supporte ancien format objet et nouveau format tableau)
+      function normalizeMyRequestsMap(rawObj) {
+        const normalized = {};
+        if (!rawObj || typeof rawObj !== 'object') return normalized;
+
+        Object.entries(rawObj).forEach(([rideId, value]) => {
+          if (Array.isArray(value)) {
+            normalized[rideId] = value
+              .filter((item) => item && typeof item === 'object')
+              .map((item, index) => ({
+                requestId: String(item.requestId || item.id || `my-req-${rideId}-${index}`),
+                passengerNote: typeof item.passengerNote === 'string' ? item.passengerNote : ''
+              }));
+          } else if (value && typeof value === 'object') {
+            normalized[rideId] = [
+              {
+                requestId: String(value.requestId || value.id || `my-req-${rideId}-0`),
+                passengerNote: typeof value.passengerNote === 'string' ? value.passengerNote : ''
+              }
+            ];
+          }
+        });
+
+        return normalized;
+      }
+
+      // Déduplique une liste de trajets par identifiant unique `id`
+      function deduplicateRidesById(list) {
+        if (!Array.isArray(list)) return [];
+        const map = new Map();
+        list.forEach((item) => {
+          if (!item) return;
+          const norm = normalizeRide(item);
+          if (!norm.id) return;
+          if (!map.has(norm.id)) {
+            map.set(norm.id, norm);
+          }
+        });
+        return Array.from(map.values());
+      }
+
+      // Chargement depuis localStorage avec secours gracieux et rafraîchissement des dates d'exemple
+      function loadRides() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw === null) {
+            rides = deduplicateRidesById(createSampleRides());
+            saveRides();
+          } else {
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) {
+              rides = deduplicateRidesById(createSampleRides());
+              saveRides();
+            } else {
+              const freshSamplesMap = new Map(createSampleRides().map((s) => [s.id, s]));
+              const normalizedList = deduplicateRidesById(parsed).map((norm) => {
+                if (norm.isSample && freshSamplesMap.has(norm.id)) {
+                  const fresh = freshSamplesMap.get(norm.id);
+                  return {
+                    ...norm,
+                    date: fresh.date,
+                    time: fresh.time
+                  };
+                }
+                return norm;
+              });
+
+              rides = normalizedList;
+              saveRides();
+            }
+          }
+        } catch (err) {
+          rides = deduplicateRidesById(createSampleRides());
+          showNotification("Impossible de lire l'historique local ; des trajets exemples sont affichés.", 'warning');
+        }
+
+        try {
+          const rawMyReq = localStorage.getItem(MY_REQUESTS_KEY);
+          const parsedMyReq = rawMyReq ? JSON.parse(rawMyReq) : {};
+          myRequestsByRide = normalizeMyRequestsMap(parsedMyReq);
+        } catch (err) {
+          myRequestsByRide = {};
+        }
+      }
+
+      // Normalise un trajet pour compatibilité avec les données enregistrées
+      function normalizeRide(ride) {
+        const normalizedRequests = Array.isArray(ride.requests)
+          ? ride.requests.map((req, idx) => ({
+              id: req.id || `req-${ride.id || 'item'}-${idx}`,
+              passengerNote: typeof req.passengerNote === 'string' ? req.passengerNote : '',
+              seatsTaken: Math.max(1, Number(req.seatsTaken) || 1),
+              createdAt: req.createdAt || new Date().toISOString()
+            }))
+          : [];
+
+        return {
+          ...ride,
+          seats: Math.max(0, Number(ride.seats) || 0),
+          requests: normalizedRequests,
+          contactRevealed: Boolean(ride.contactRevealed)
+        };
+      }
+
+      // Sauvegarde dans localStorage (les trajets passés restent conservés localement)
+      function saveRides() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(rides));
+          localStorage.setItem(MY_REQUESTS_KEY, JSON.stringify(myRequestsByRide));
+        } catch (err) {
+          showNotification("La sauvegarde locale n'a pas pu aboutir sur cet appareil.", 'warning');
+        }
+      }
+
+      // Changement d'onglet ('search' ou 'offer')
+      function setActiveTab(tabName) {
+        activeTab = tabName;
+        const isSearch = tabName === 'search';
+
+        panelSearch.classList.toggle('hidden', !isSearch);
+        panelOffer.classList.toggle('hidden', isSearch);
+
+        tabSearch.setAttribute('aria-selected', String(isSearch));
+        tabOffer.setAttribute('aria-selected', String(!isSearch));
+
+        if (isSearch) {
+          tabSearch.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer';
+          tabOffer.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
+          renderRides();
+        } else {
+          tabOffer.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-[#fffdf9] text-argile-900 shadow-xs cursor-pointer';
+          tabSearch.className = 'px-4 py-2.5 rounded-xl text-sm font-semibold transition text-argile-700 hover:text-argile-900 cursor-pointer';
+          formError.classList.add('hidden');
+        }
+      }
+
+      // Filtrage des trajets selon la période (trajets passés masqués par défaut) et la recherche texte
+      function getFilteredRides() {
+        const uniqueRides = deduplicateRidesById(rides);
+        if (uniqueRides.length !== rides.length) {
+          rides = uniqueRides;
+          saveRides();
+        }
+
+        const query = filterQuery.value.trim().toLowerCase();
+        const period = filterPeriod.value || 'upcoming';
+        const now = new Date();
+        const todayStr = getRelativeDate(0);
+        const weekAheadStr = getRelativeDate(7);
+
+        return uniqueRides.filter((ride) => {
+          const past = isRidePast(ride, now);
+
+          if (period === 'upcoming' && past) {
+            return false;
+          }
+          if (period === 'today' && ride.date !== todayStr) {
+            return false;
+          }
+          if (period === 'week' && (past || ride.date < todayStr || ride.date > weekAheadStr)) {
+            return false;
+          }
+          if (period === 'past' && !past) {
+            return false;
+          }
+
+          if (!query) return true;
+          const haystack = [
+            ride.origin,
+            ride.destination,
+            ride.driverName,
+            ride.notes
+          ]
+            .join(' ')
+            .toLowerCase();
+
+          return haystack.includes(query);
+        });
+      }
+
+      // Mise à jour du titre de section et du badge du bandeau supérieur
+      function updateHeaderAndHeading(filteredCount) {
+        const uniqueRides = deduplicateRidesById(rides);
+        const now = new Date();
+        const upcomingCount = uniqueRides.filter((r) => !isRidePast(r, now)).length;
+        const pastCount = uniqueRides.length - upcomingCount;
+        const period = filterPeriod.value || 'upcoming';
+
+        rideCountBadge.textContent = upcomingCount === 0
+          ? '0 trajet à venir'
+          : upcomingCount === 1
+            ? '1 trajet à venir'
+            : `${upcomingCount} trajets à venir`;
+
+        const headingByPeriod = {
+          upcoming: 'Trajets à venir',
+          today: "Trajets d'aujourd'hui",
+          week: 'Trajets de la semaine',
+          past: 'Trajets passés',
+          all: 'Tous les trajets'
+        };
+        listHeading.textContent = headingByPeriod[period] || 'Trajets proposés';
+
+        const pastNote = period === 'upcoming' && pastCount > 0
+          ? ` · ${pastCount} trajet${pastCount > 1 ? 's passés masqués' : ' passé masqué'} par défaut`
+          : '';
+
+        if (filteredCount === 0) {
+          resultsSummary.textContent = `0 résultat affiché${pastNote}`;
+        } else {
+          resultsSummary.textContent = `${filteredCount === 1 ? '1 trajet affiché' : `${filteredCount} trajets affichés`}${pastNote}`;
+        }
+      }
+
+      // Rendu de la liste des trajets
+      function renderRides() {
+        const filtered = deduplicateRidesById(getFilteredRides());
+        updateHeaderAndHeading(filtered.length);
+
+        const now = new Date();
+        ridesList.innerHTML = '';
+
+        if (filtered.length === 0) {
+          emptyState.classList.remove('hidden');
+          ridesList.classList.add('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        ridesList.classList.remove('hidden');
+
+        filtered.forEach((ride) => {
+          const past = isRidePast(ride, now);
+          const seatsLeft = Number(ride.seats) || 0;
+          const hasSeats = seatsLeft > 0 && !past;
+          const rideRequests = Array.isArray(ride.requests) ? ride.requests : [];
+          const requestsCount = rideRequests.reduce((sum, r) => sum + (Number(r.seatsTaken) || 1), 0);
+          const myActiveRequests = Array.isArray(myRequestsByRide[ride.id]) ? myRequestsByRide[ride.id] : [];
+          const isComposerOpen = openRequestComposerId === ride.id && hasSeats;
+          const isPanelExpanded = expandedRequestPanels.has(ride.id);
+
+          const card = document.createElement('article');
+          card.className = `bg-[#fffdf9] rounded-3xl border border-argile-200 p-5 sm:p-6 shadow-xs flex flex-col justify-between gap-5 ${
+            past ? 'opacity-80' : ''
+          }`;
+
+          // Bloc de confirmation affichant le contact du conducteur et chacune de vos demandes avec bouton "Annuler"
+          const myRequestsItemsHtml = myActiveRequests.length > 0
+            ? `
+              <ul class="mt-2 space-y-1.5">
+                ${myActiveRequests
+                  .map((myReq, idx) => {
+                    const noteLabel = myReq.passengerNote
+                      ? `« ${escapeHtml(myReq.passengerNote)} »`
+                      : `Place demandée n°${idx + 1}`;
+                    return `
+                      <li class="flex items-center justify-between gap-2 rounded-xl bg-white/90 border border-mousse-200/90 px-3 py-1.5 text-xs text-argile-800">
+                        <span class="font-medium break-words">${noteLabel}</span>
+                        ${
+                          !past
+                            ? `<button
+                                type="button"
+                                data-cancel-single-mine-ride="${escapeHtml(ride.id)}"
+                                data-cancel-single-mine-req="${escapeHtml(myReq.requestId)}"
+                                class="cancel-single-mine-btn shrink-0 font-semibold text-argile-800 hover:text-argile-900 bg-argile-100 hover:bg-argile-200 px-2.5 py-1 rounded-lg transition cursor-pointer"
+                              >
+                                Annuler
+                              </button>`
+                            : ''
+                        }
+                      </li>
+                    `;
+                  })
+                  .join('')}
+              </ul>
+            `
+            : '';
+
+          const contactBlock = (ride.contactRevealed || myActiveRequests.length > 0)
+            ? `
+              <div class="mt-3 rounded-2xl bg-mousse-50 border border-mousse-200 p-3.5 text-xs sm:text-sm text-mousse-800">
+                <p class="font-semibold">
+                  ${
+                    myActiveRequests.length > 0
+                      ? `${myActiveRequests.length} place${myActiveRequests.length > 1 ? 's demandées' : ' demandée'} par vous — contact de ${escapeHtml(ride.driverName)} :`
+                      : `Place demandée — contact de ${escapeHtml(ride.driverName)} :`
+                  }
+                </p>
+                <p class="mt-0.5 font-medium">${escapeHtml(ride.contact || 'Aucun contact précis renseigné ; vous pouvez convenir du rendez-vous sur place ou via votre groupe local.')}</p>
+                ${myRequestsItemsHtml}
+              </div>
+            `
+            : '';
+
+          const notesBlock = ride.notes
+            ? `
+              <p class="mt-3 text-xs sm:text-sm text-argile-700 bg-argile-50/90 border border-argile-200/80 rounded-2xl px-3.5 py-2.5 leading-relaxed">
+                <span class="font-semibold text-argile-800">Précision :</span> ${escapeHtml(ride.notes)}
+              </p>
+            `
+            : '';
+
+          // Champ compact et facultatif (prénom ou court message) affiché à chaque demande d'une place
+          const composerBlock = isComposerOpen
+            ? `
+              <div class="mt-3.5 rounded-2xl bg-argile-50 border border-argile-200 p-3.5">
+                <label for="passengerNote-${escapeHtml(ride.id)}" class="block text-xs font-semibold text-argile-800 mb-1.5">
+                  Prénom ou petit message pour cette place <span class="font-normal text-argile-600">(facultatif)</span>
+                </label>
+                <div class="flex flex-col sm:flex-row gap-2">
+                  <input
+                    id="passengerNote-${escapeHtml(ride.id)}"
+                    type="text"
+                    maxlength="140"
+                    placeholder="Ex. : Léa ou Paul — 2e place"
+                    class="passenger-note-input flex-1 rounded-xl border border-argile-300 bg-white px-3 py-2 text-xs sm:text-sm text-argile-900 placeholder:text-argile-600/70 focus:outline-none focus:ring-2 focus:ring-mousse-600/40 focus:border-mousse-600"
+                  />
+                  <div class="flex gap-2 shrink-0">
+                    <button
+                      type="button"
+                      data-confirm-request-id="${escapeHtml(ride.id)}"
+                      class="confirm-request-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-terracotta-700 hover:bg-terracotta-800 text-white transition cursor-pointer"
+                    >
+                      Valider (+1 place)
+                    </button>
+                    <button
+                      type="button"
+                      data-cancel-composer-id="${escapeHtml(ride.id)}"
+                      class="cancel-composer-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-argile-100 text-argile-700 border border-argile-300 transition cursor-pointer"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `
+            : '';
+
+          // Liste détaillée des demandes enregistrées sur le trajet (avec prénom/message et bouton Retirer)
+          const myRequestIdsSet = new Set(myActiveRequests.map((item) => item.requestId));
+          const requestsManagerBlock = isPanelExpanded
+            ? `
+              <div class="mt-3 rounded-2xl bg-argile-50/80 border border-argile-200 p-3.5 space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <p class="text-xs font-semibold text-argile-800">
+                    Demandes enregistrées (${rideRequests.length})
+                  </p>
+                  <button
+                    type="button"
+                    data-toggle-panel-id="${escapeHtml(ride.id)}"
+                    class="toggle-requests-panel-btn text-xs font-medium text-argile-600 hover:text-argile-900 cursor-pointer"
+                  >
+                    Masquer
+                  </button>
+                </div>
+                ${
+                  rideRequests.length === 0
+                    ? '<p class="text-xs text-argile-600">Aucune demande active sur ce trajet.</p>'
+                    : rideRequests
+                        .map((reqItem, index) => {
+                          const isMine = myRequestIdsSet.has(reqItem.id);
+                          const labelText = reqItem.passengerNote
+                            ? escapeHtml(reqItem.passengerNote)
+                            : `Demande n°${index + 1} (sans prénom ni message)`;
+                          return `
+                            <div class="flex items-center justify-between gap-2 rounded-xl bg-white border border-argile-200/90 px-3 py-2 text-xs">
+                              <div class="text-argile-800 min-w-0">
+                                <span class="font-medium break-words">${labelText}</span>
+                                ${
+                                  isMine
+                                    ? '<span class="ml-1.5 inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-mousse-100 text-mousse-800">Votre demande</span>'
+                                    : ''
+                                }
+                              </div>
+                              <button
+                                type="button"
+                                data-remove-req-ride="${escapeHtml(ride.id)}"
+                                data-remove-req-id="${escapeHtml(reqItem.id)}"
+                                class="remove-single-request-btn shrink-0 font-semibold text-argile-700 hover:text-argile-900 px-2.5 py-1 rounded-lg bg-argile-100 hover:bg-argile-200 transition cursor-pointer"
+                              >
+                                Retirer
+                              </button>
+                            </div>
+                          `;
+                        })
+                        .join('')
+                }
+              </div>
+            `
+            : '';
+
+          let statusPill = '';
+          if (past) {
+            statusPill = '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-argile-100 text-argile-700 border border-argile-200">Trajet passé</span>';
+          } else if (seatsLeft > 0) {
+            statusPill = `<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-mousse-100 text-mousse-800 border border-mousse-200">${seatsLeft === 1 ? '1 place libre' : `${seatsLeft} places libres`}</span>`;
+          } else {
+            statusPill = '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-argile-100 text-argile-600 border border-argile-200">Complet</span>';
+          }
+
+          // Bouton de demande de place : reste disponible tant qu'il reste au moins 1 place libre sur le trajet
+          let requestActionHtml = '';
+          if (past) {
+            requestActionHtml = `
+              <button
+                type="button"
+                disabled
+                class="px-4 py-2.5 rounded-2xl text-sm font-semibold bg-argile-100 text-argile-600/70 border border-argile-200 cursor-not-allowed"
+              >
+                Trajet déjà effectué
+              </button>
+            `;
+          } else if (seatsLeft <= 0) {
+            requestActionHtml = `
+              <button
+                type="button"
+                disabled
+                class="px-4 py-2.5 rounded-2xl text-sm font-semibold bg-argile-100 text-argile-600/70 border border-argile-200 cursor-not-allowed"
+              >
+                Plus de place libre
+              </button>
+            `;
+          } else if (isComposerOpen) {
+            requestActionHtml = '';
+          } else {
+            const actionLabel = myActiveRequests.length > 0 ? 'Demander une autre place' : 'Demander une place';
+            requestActionHtml = `
+              <button
+                type="button"
+                data-open-request-id="${escapeHtml(ride.id)}"
+                class="open-request-btn px-4 py-2.5 rounded-2xl text-sm font-semibold bg-terracotta-700 hover:bg-terracotta-800 text-white shadow-xs transition cursor-pointer"
+              >
+                ${actionLabel}
+              </button>
+            `;
+          }
+
+          const sampleTag = ride.isSample
+            ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-argile-100 text-argile-600 border border-argile-200">Exemple local</span>'
+            : '';
+
+          card.innerHTML = `
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-2">
+                  ${statusPill}
+                  ${sampleTag}
+                </div>
+
+                <button
+                  type="button"
+                  data-delete-id="${escapeHtml(ride.id)}"
+                  class="delete-ride-btn text-xs font-semibold text-argile-600 hover:text-argile-900 px-2.5 py-1 rounded-xl hover:bg-argile-100 transition cursor-pointer"
+                  aria-label="Supprimer le trajet de ${escapeHtml(ride.driverName)}"
+                >
+                  Supprimer
+                </button>
+              </div>
+
+              <h3 class="mt-3 text-lg sm:text-xl font-bold text-argile-900 leading-snug">
+                ${escapeHtml(ride.origin)} <span class="text-mousse-700 font-semibold">→</span> ${escapeHtml(ride.destination)}
+              </h3>
+
+              <div class="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm text-argile-700">
+                <span class="font-medium capitalize">${escapeHtml(formatDateFr(ride.date))}</span>
+                <span>·</span>
+                <span class="font-semibold text-argile-900">Départ ${escapeHtml(ride.time)}</span>
+                <span>·</span>
+                <span>Conducteur/trice : <strong class="font-semibold text-argile-900">${escapeHtml(ride.driverName)}</strong></span>
+              </div>
+
+              ${notesBlock}
+              ${composerBlock}
+              ${contactBlock}
+              ${requestsManagerBlock}
+            </div>
+
+            <div class="pt-3 border-t border-argile-100 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-argile-600">
+                <span>
+                  ${requestsCount > 0 ? `${requestsCount} demande${requestsCount > 1 ? 's' : ''} enregistrée${requestsCount > 1 ? 's' : ''}` : 'Partage gratuit entre voisins'}
+                </span>
+                ${
+                  rideRequests.length > 0
+                    ? `<button type="button" data-toggle-panel-id="${escapeHtml(ride.id)}" class="toggle-requests-panel-btn font-semibold text-mousse-700 hover:text-mousse-800 underline underline-offset-2 cursor-pointer">${isPanelExpanded ? 'Masquer les demandes' : 'Gérer les demandes'}</button>`
+                    : ''
+                }
+              </div>
+
+              ${requestActionHtml}
+            </div>
+          `;
+
+          ridesList.appendChild(card);
+        });
+
+        // Ouvre le petit champ facultatif (prénom / message) et place le focus dedans
+        ridesList.querySelectorAll('.open-request-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-open-request-id');
+            openRequestComposerId = id;
+            renderRides();
+            const inputEl = document.getElementById(`passengerNote-${id}`);
+            if (inputEl) inputEl.focus();
+          });
+        });
+
+        // Valide la demande d'une place supplémentaire avec le prénom / message facultatif saisi
+        ridesList.querySelectorAll('.confirm-request-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-confirm-request-id');
+            const inputEl = document.getElementById(`passengerNote-${id}`);
+            const noteValue = inputEl ? inputEl.value.trim() : '';
+            handleRequestSeat(id, noteValue);
+          });
+        });
+
+        // Permet de valider d'un appui sur Entrée dans le petit champ facultatif
+        ridesList.querySelectorAll('.passenger-note-input').forEach((inputEl) => {
+          inputEl.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              const rideId = inputEl.id.replace('passengerNote-', '');
+              handleRequestSeat(rideId, inputEl.value.trim());
+            }
+          });
+        });
+
+        // Ferme le petit champ facultatif sans créer de demande
+        ridesList.querySelectorAll('.cancel-composer-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            openRequestComposerId = null;
+            renderRides();
+          });
+        });
+
+        // Annule individuellement l'une de ses propres demandes enregistrées sur cet appareil et restaure 1 place
+        ridesList.querySelectorAll('.cancel-single-mine-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const rideId = btn.getAttribute('data-cancel-single-mine-ride');
+            const reqId = btn.getAttribute('data-cancel-single-mine-req');
+            handleCancelSingleMyRequest(rideId, reqId);
+          });
+        });
+
+        // Affiche ou masque la liste des demandes d'un trajet
+        ridesList.querySelectorAll('.toggle-requests-panel-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-toggle-panel-id');
+            if (expandedRequestPanels.has(id)) {
+              expandedRequestPanels.delete(id);
+            } else {
+              expandedRequestPanels.add(id);
+            }
+            renderRides();
+          });
+        });
+
+        // Retire une demande précise dans la liste d'un trajet et restaure sa place
+        ridesList.querySelectorAll('.remove-single-request-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const rideId = btn.getAttribute('data-remove-req-ride');
+            const reqId = btn.getAttribute('data-remove-req-id');
+            handleRemoveRideRequest(rideId, reqId);
+          });
+        });
+
+        ridesList.querySelectorAll('.delete-ride-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-delete-id');
+            handleDeleteRide(id);
+          });
+        });
+      }
+
+      // Demande d'une place : décrémente d'1 place, enregistre le prénom/message facultatif avec un identifiant unique
+      function handleRequestSeat(rideId, passengerNote = '') {
+        const target = rides.find((r) => r.id === rideId);
+        if (!target || target.seats <= 0 || isRidePast(target)) return;
+
+        if (!Array.isArray(target.requests)) {
+          target.requests = [];
+        }
+
+        const cleanNote = String(passengerNote || '').trim();
+        const requestId = `req-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+        const newRequest = {
+          id: requestId,
+          passengerNote: cleanNote,
+          seatsTaken: 1,
+          createdAt: new Date().toISOString()
+        };
+
+        target.requests.push(newRequest);
+        target.seats = Math.max(0, Number(target.seats) - 1);
+        target.contactRevealed = true;
+        openRequestComposerId = null;
+
+        if (!Array.isArray(myRequestsByRide[rideId])) {
+          myRequestsByRide[rideId] = [];
+        }
+        myRequestsByRide[rideId].push({
+          requestId,
+          passengerNote: cleanNote
+        });
+
+        saveRides();
+        renderRides();
+
+        const noteSuffix = cleanNote ? ` (« ${cleanNote} »)` : '';
+        showNotification(
+          `1 place ajoutée${noteSuffix} sur le trajet ${target.origin} → ${target.destination} avec ${target.driverName}. Il reste ${target.seats} place${target.seats > 1 ? 's libres' : ' libre'}.`
+        );
+      }
+
+      // Annule individuellement une demande effectuée depuis cet appareil et restaure sa place
+      function handleCancelSingleMyRequest(rideId, requestId) {
+        const target = rides.find((r) => r.id === rideId);
+        const mineList = Array.isArray(myRequestsByRide[rideId]) ? myRequestsByRide[rideId] : [];
+        if (!target || mineList.length === 0) return;
+
+        const existingIndex = Array.isArray(target.requests)
+          ? target.requests.findIndex((r) => r.id === requestId)
+          : -1;
+
+        let freedSeats = 1;
+        if (existingIndex !== -1) {
+          freedSeats = Math.max(1, Number(target.requests[existingIndex].seatsTaken) || 1);
+          target.requests.splice(existingIndex, 1);
+        }
+
+        target.seats = Number(target.seats || 0) + freedSeats;
+        myRequestsByRide[rideId] = mineList.filter((item) => item.requestId !== requestId);
+        if (myRequestsByRide[rideId].length === 0) {
+          delete myRequestsByRide[rideId];
+        }
+
+        if (!target.requests || target.requests.length === 0) {
+          target.contactRevealed = false;
+          expandedRequestPanels.delete(rideId);
+        }
+
+        saveRides();
+        renderRides();
+        showNotification(
+          `Votre demande a été annulée pour le trajet ${target.origin} → ${target.destination} ; ${freedSeats > 1 ? `${freedSeats} places sont` : '1 place est'} de nouveau disponible.`,
+          'warning'
+        );
+      }
+
+      // Retire une demande précise depuis la liste d'un trajet et restaure la place correspondante
+      function handleRemoveRideRequest(rideId, requestId) {
+        const target = rides.find((r) => r.id === rideId);
+        if (!target || !Array.isArray(target.requests)) return;
+
+        const reqIndex = target.requests.findIndex((r) => r.id === requestId);
+        if (reqIndex === -1) return;
+
+        const removed = target.requests[reqIndex];
+        const freedSeats = Math.max(1, Number(removed.seatsTaken) || 1);
+        target.requests.splice(reqIndex, 1);
+        target.seats = Number(target.seats || 0) + freedSeats;
+
+        if (Array.isArray(myRequestsByRide[rideId])) {
+          myRequestsByRide[rideId] = myRequestsByRide[rideId].filter((item) => item.requestId !== requestId);
+          if (myRequestsByRide[rideId].length === 0) {
+            delete myRequestsByRide[rideId];
+          }
+        }
+
+        if (target.requests.length === 0) {
+          target.contactRevealed = false;
+          expandedRequestPanels.delete(rideId);
+        }
+
+        saveRides();
+        renderRides();
+        showNotification(
+          `La demande a été retirée sur le trajet ${target.origin} → ${target.destination} et ${freedSeats > 1 ? `${freedSeats} places ont` : '1 place a'} été remise disponible.`,
+          'warning'
+        );
+      }
+
+      // Suppression d'un trajet
+      function handleDeleteRide(rideId) {
+        const target = rides.find((r) => r.id === rideId);
+        if (!target) return;
+
+        rides = rides.filter((r) => r.id !== rideId);
+        delete myRequestsByRide[rideId];
+        expandedRequestPanels.delete(rideId);
+        if (openRequestComposerId === rideId) {
+          openRequestComposerId = null;
+        }
+        saveRides();
+        renderRides();
+        showNotification(
+          `Le trajet ${target.origin} → ${target.destination} (${target.driverName}) a été retiré de la liste.`,
+          'warning'
+        );
+      }
+
+      // Effacer les trajets exemples du stockage local (tout en conservant les trajets créés par l'utilisateur)
+      function handleClearSamples() {
+        rides = deduplicateRidesById(rides.filter((r) => !r.isSample));
+        Object.keys(myRequestsByRide).forEach((rideId) => {
+          if (!rides.some((r) => r.id === rideId)) {
+            delete myRequestsByRide[rideId];
+          }
+        });
+        saveRides();
+        renderRides();
+        showNotification(
+          'Les trajets exemples ont été effacés ; vos trajets personnels sont conservés.',
+          'warning'
+        );
+      }
+
+      // Réinitialiser / restaurer les trajets exemples autour de Val d'Anast
+      function handleRestoreSamples() {
+        const freshSamples = createSampleRides();
+        const nonSamples = deduplicateRidesById(rides.filter((r) => !r.isSample));
+        rides = deduplicateRidesById([...freshSamples, ...nonSamples]);
+        saveRides();
+        renderRides();
+        showNotification('Les trajets exemples autour de Val d’Anast ont été réinitialisés avec des dates à jour.');
+      }
+
+      // Réinitialiser les filtres vers l'affichage par défaut (trajets passés masqués)
+      function handleResetFilters() {
+        filterQuery.value = '';
+        filterPeriod.value = 'upcoming';
+        renderRides();
+      }
+
+      // Soumission du formulaire "Proposer un trajet"
+      function handleOfferSubmit(event) {
+        event.preventDefault();
+        formError.classList.add('hidden');
+
+        const driverName = document.getElementById('driverName').value.trim();
+        const origin = document.getElementById('originPlace').value.trim();
+        const destination = document.getElementById('destinationPlace').value.trim();
+        const date = document.getElementById('rideDate').value;
+        const time = document.getElementById('rideTime').value;
+        const seats = Number(document.getElementById('seatsCount').value) || 1;
+        const contact = document.getElementById('driverContact').value.trim();
+        const notes = document.getElementById('rideNotes').value.trim();
+
+        if (!driverName || !origin || !destination || !date || !time) {
+          formError.textContent = 'Merci de renseigner votre prénom, le départ, l’arrivée, la date et l’heure de départ.';
+          formError.classList.remove('hidden');
+          return;
+        }
+
+        const newRide = {
+          id: `ride-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+          isSample: false,
+          driverName,
+          origin,
+          destination,
+          date,
+          time,
+          seats,
+          contact,
+          notes,
+          requests: [],
+          contactRevealed: false
+        };
+
+        rides = deduplicateRidesById([newRide, ...rides]);
+        saveRides();
+        offerRideForm.reset();
+        setDefaultDateInForm();
+        if (isRidePast(newRide)) {
+          filterPeriod.value = 'all';
+        } else if (filterPeriod.value === 'past') {
+          filterPeriod.value = 'upcoming';
+        }
+        setActiveTab('search');
+        showNotification(`Votre trajet ${origin} → ${destination} a bien été publié et enregistré localement.`);
+      }
+
+      // Pré-remplit la date du formulaire avec la date du jour si vide
+      function setDefaultDateInForm() {
+        const dateInput = document.getElementById('rideDate');
+        if (dateInput && !dateInput.value) {
+          dateInput.value = getRelativeDate(0);
+        }
+      }
+
+      // Initialisation des écouteurs d'événements
+      function bindEvents() {
+        tabSearch.addEventListener('click', () => setActiveTab('search'));
+        tabOffer.addEventListener('click', () => setActiveTab('offer'));
+
+        emptyResetBtn.addEventListener('click', handleResetFilters);
+        emptyOfferBtn.addEventListener('click', () => setActiveTab('offer'));
+
+        filterQuery.addEventListener('input', renderRides);
+        filterPeriod.addEventListener('change', renderRides);
+        resetFiltersBtn.addEventListener('click', handleResetFilters);
+
+        document.querySelectorAll('.quick-commune-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const commune = btn.getAttribute('data-quick-commune') || '';
+            filterQuery.value = commune;
+            renderRides();
+          });
+        });
+
+        restoreSamplesBtn.addEventListener('click', handleRestoreSamples);
+        clearSamplesBtn.addEventListener('click', handleClearSamples);
+
+        offerRideForm.addEventListener('submit', handleOfferSubmit);
+        closeBannerBtn.addEventListener('click', hideNotification);
+      }
+
+      // Démarrage
+      loadRides();
+      setDefaultDateInForm();
+      bindEvents();
+      renderRides();
+    })();
+  </script>
 </body>
 </html>
