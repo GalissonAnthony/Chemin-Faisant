@@ -558,6 +558,7 @@
      * Application "Hent Mat"
      * Gestion locale des trajets de covoiturage gratuit autour de Val d'Anast
      * avec persistance dans localStorage ('chemin_faisant_rides_v1' et 'chemin_faisant_my_requests_v1'),
+     * tri chronologique par date et heure de départ,
      * masquage par défaut des trajets passés (sans suppression des données enregistrées),
      * demandes multiples (1 place à la fois jusqu'à épuisement des places libres),
      * champ facultatif prénom/message par demande, annulation individuelle et gestion complète.
@@ -611,6 +612,27 @@
         const rideDateTime = parseRideDateTime(ride.date, ride.time);
         if (!rideDateTime) return false;
         return rideDateTime.getTime() < now.getTime();
+      }
+
+      // Trie chronologiquement une liste de trajets selon la date et l'heure de départ
+      function sortRidesChronologically(list, descending = false) {
+        return [...list].sort((a, b) => {
+          const dtA = parseRideDateTime(a.date, a.time);
+          const dtB = parseRideDateTime(b.date, b.time);
+          const timeA = dtA ? dtA.getTime() : Number.MAX_SAFE_INTEGER;
+          const timeB = dtB ? dtB.getTime() : Number.MAX_SAFE_INTEGER;
+
+          if (timeA !== timeB) {
+            return descending ? timeB - timeA : timeA - timeB;
+          }
+
+          const dateCmp = String(a.date || '').localeCompare(String(b.date || ''));
+          if (dateCmp !== 0) {
+            return descending ? -dateCmp : dateCmp;
+          }
+
+          return String(a.time || '').localeCompare(String(b.time || ''));
+        });
       }
 
       // Trajets d'exemple locaux autour de Val d'Anast et communes voisines avec dates dynamiques
@@ -937,7 +959,7 @@
 
       window.hentMatSwitchTab = setActiveTab;
 
-      // Retourne la liste des trajets filtrés selon la recherche et la période choisie
+      // Retourne la liste des trajets filtrés et triés chronologiquement selon la recherche et la période choisie
       function getFilteredRides() {
         const uniqueRides = deduplicateRidesById(rides);
         const query = normalizeSearchText(filterQuery ? filterQuery.value : '');
@@ -946,7 +968,7 @@
         const todayStr = getRelativeDate(0);
         const weekAheadStr = getRelativeDate(7);
 
-        return uniqueRides.filter((ride) => {
+        const matched = uniqueRides.filter((ride) => {
           const past = isRidePast(ride, now);
 
           if (period === 'upcoming' && past) {
@@ -972,6 +994,8 @@
 
           return haystack.includes(query);
         });
+
+        return sortRidesChronologically(matched, period === 'past');
       }
 
       // Mise à jour du titre de section et du badge du bandeau supérieur
